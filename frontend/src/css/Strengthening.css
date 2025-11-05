@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'KkuBulLim';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BMkkubulimTTF-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'GangwonEducationModuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GangwonEducationModuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+.weapon-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.weapon-contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1080px;
+}
+
+.weapon-info, .user-select {
+    flex-basis: 40%;
+    text-align: center;
+}
+
+.weapon-image {
+    display: flex;
+    justify-content: center;
+}
+
+.weapon-image > img {
+    height: 40vh;
+}
+
+.weapon-name {
+    display: flex;
+    justify-content: center;
+    font-family: 'KkuBulLim';
+    font-size: 2rem;
+    line-height: 2;
+}
+
+.weapon-price {
+    font-family: 'GangwonEducationModuche';
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.user-money, .strengthening-cost {
+    font-family: 'GangwonEducationModuche';
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.user-select > button {
+    font-family: 'GangwonEducationModuche';
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    margin: 0px 0.5rem;
+    width: 8rem;
+    height: 3rem;
+
+}

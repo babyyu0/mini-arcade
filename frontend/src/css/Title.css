@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'JejuStoneWall';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'JejuStoneWall';
+    width: 100%;
+    height: 8rem;
+    text-align: center;
+    font-size: 4rem;
+    
+}
