@@ -1,20 +1,7 @@
 @font-face {
-    font-family: 'KkuBulLim';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BMkkubulimTTF-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'GangwonEducationModuche';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
-    font-weight: 300;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'GangwonEducationModuche';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
-    font-weight: 700;
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
     font-display: swap;
 }
 
@@ -50,28 +37,37 @@
 .weapon-name {
     display: flex;
     justify-content: center;
-    font-family: 'KkuBulLim';
+    font-family: 'RoundedFixedsys';
     font-size: 2rem;
-    line-height: 2;
+    margin: 1rem 0;
 }
 
-.weapon-price {
-    font-family: 'GangwonEducationModuche';
-    font-size: 1.5rem;
-    font-weight: 700;
+.weapon-desc {
+    font-family: 'RoundedFixedsys';
 }
 
-.user-money, .strengthening-cost {
-    font-family: 'GangwonEducationModuche';
+.user-money  {
     font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.weapon-price, .strengthening-cost {
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 1rem;
+}
+
+.success-per {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.total-price {
+    margin-bottom: 2rem;
 }
 
 .user-select > button {
-    font-family: 'GangwonEducationModuche';
     font-size: 1.2rem;
-    font-weight: 700;
 
     margin: 0px 0.5rem;
     width: 8rem;
