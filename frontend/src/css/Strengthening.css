@@ -31,7 +31,9 @@
 }
 
 .weapon-image > img {
-    height: 40vh;
+    width: 30rem;
+    height: 20rem;
+    background-size: cover;
 }
 
 .weapon-name {
@@ -44,6 +46,7 @@
 
 .weapon-desc {
     font-family: 'RoundedFixedsys';
+    margin: 1rem 0;
 }
 
 .user-money  {
@@ -72,5 +75,23 @@
     margin: 0px 0.5rem;
     width: 8rem;
     height: 3rem;
+}
 
+.is-success, .is-failed {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: none;
+}
+
+.is-success {
+    color: #56a871;
+}
+
+.is-failed {
+    color: #721c1c;
+}
+
+.is-success.success, .is-failed.failed {
+    display: block;
 }

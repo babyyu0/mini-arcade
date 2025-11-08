@@ -1,0 +1,16 @@
+.category-frame {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-frame > a {
+    margin: 0 0.5rem;
+    padding: 0.6rem 1rem;
+    color: black;
+    background-color: #e0f1ff;
+    border-radius: 50px;
+    text-decoration: none;
+}
