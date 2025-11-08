@@ -13,6 +13,11 @@ function Strengthening() {
     /* 처음부터 시작 */
     const handleInit = async () => {
         const geoResponse = await axios.get('https://geolocation-db.com/json/');
+        if(geoResponse.status != 200) {
+            alert("서버에 문제가 발생했습니다. 잠시 후에 다시 시도해주세요.");
+            return false;
+        }
+
         const ipAddress = geoResponse.data.IPv4;
 
         // 게임 초기에 필요한 정보 삽입
@@ -37,20 +42,18 @@ function Strengthening() {
 
     /* 무기 강화하기 */
     const handleStrengthenWeapon = async () => {
-        const response = await axios.post(`
-http://localhost:8080/strengthening//strengthening`);
-        console.log(response);
+        const response = await axios.post(`${BACKEND_URL}/strengthen`, userInfo);
+        const data = response.data;
+        setUserInfo(data.user);
+        setWeaponInfo(data.weapon);
     }
 
     /* 무기 판매하기 */
-    const handleSellWeapon = () => {
-        // 수익
-        setUserMoney(userMoney + weaponInfo.price);
-        setTotalPrice(0);
-
-        // 무기를 다시 처음부터 되돌리기
-        var changedWeaponInfo = weaponList.at(0);
-        setWeaponInfo(changedWeaponInfo);
+    const handleSellWeapon = async () => {
+        const response = await axios.post(`${BACKEND_URL}/sell`, userInfo);
+        const data = response.data;
+        setUserInfo(data.user);
+        setWeaponInfo(data.weapon);
     }
 
     return (
@@ -66,9 +69,9 @@ http://localhost:8080/strengthening//strengthening`);
                     <div className='user-select'>
                         <div className='user-money'>{userInfo.money.toLocaleString()} 원</div>
                         <div className='total-price'>누적 강화비용: {totalPrice.toLocaleString()} 원</div>
-                        <div className='weapon-price'><b>판매가</b>: {weaponInfo.price ? weaponInfo.price.toLocaleString() : ''} 원</div>
-                        <div className='strengthening-cost'><b>강화 비용</b>: {weaponInfo.strengtheningCost ? weaponInfo.strengtheningCost.toLocaleString() : ''} 원</div>
-                        <div className='success-per'>(성공 확률: {weaponInfo.successPer ? weaponInfo.successPer : ''}%)</div>
+                        <div className='weapon-price'><b>판매가</b>: {weaponInfo.price ? weaponInfo.price.toLocaleString() : '0'} 원</div>
+                        <div className='strengthening-cost'><b>강화 비용</b>: {weaponInfo.strengtheningCost ? weaponInfo.strengtheningCost.toLocaleString() : '0'} 원</div>
+                        <div className='success-per'>(성공 확률: {weaponInfo.successPer ? weaponInfo.successPer : '0'}%)</div>
                         <button onClick={handleStrengthenWeapon}>강화하기</button>
                         <button onClick={handleSellWeapon}>판매하기</button>
                     </div>
