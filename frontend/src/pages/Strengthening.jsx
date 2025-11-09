@@ -50,12 +50,18 @@ function Strengthening() {
     /* 무기 강화하기 */
     const handleStrengthenWeapon = async () => {
         try {
+            // 선결제
+            setTotalPrice(totalPrice + weaponInfo.strengtheningCost);
+
             const response = await axios.post(`${BACKEND_URL}/strengthen`, userInfo);
             const data = response.data;
             setUserInfo(data.user);
             setWeaponInfo(data.weapon);
-            setTotalPrice(totalPrice + data.weapon.strengtheningCost);
             setSuccessStatus(data.successStatus);
+
+            if(data.successStatus != 1) {
+                setTotalPrice(0);
+            }
             console.log(data);
         } catch(error) {
             setWeaponInfo({name: error.message, level: 0})
@@ -70,8 +76,8 @@ function Strengthening() {
             const data = response.data;
             setUserInfo(data.user);
             setWeaponInfo(data.weapon);
-            setTotalPrice(0);
             setSuccessStatus(data.successStatus);
+            setTotalPrice(0);
         } catch(error) {
             setWeaponInfo({name: error.message, level: 0})
             alert(`서버에 문제가 발생했습니다. (${error.message})\n잠시 후 다시 시도해주세요.`);
@@ -99,7 +105,7 @@ function Strengthening() {
                         <button onClick={handleStrengthenWeapon}>강화하기</button>
                         <button onClick={handleSellWeapon}>판매하기</button>
                         <div className={`is-success ${successStatus == 1 ? 'active':''}`}>강화 성공!</div>
-                        <div className={`is-success ${successStatus == 2 ? 'active':''}`}>강화 실패!</div>
+                        <div className={`is-fail ${successStatus == 2 ? 'active':''}`}>강화 실패!</div>
                     </div>
                 </div>
             </div>

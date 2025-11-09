@@ -60,6 +60,8 @@ public class StrengtheningServiceImpl implements StrengtheningService {
             successStatus = SuccessStatus.FAIL;
         }
 
+        log.info("success status is {}", successStatus);
+
         user.setWeapon(nextWeapon.orElseThrow());
         userRepository.saveAndFlush(user);
 

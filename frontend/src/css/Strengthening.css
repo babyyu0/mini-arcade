@@ -98,6 +98,6 @@
     color: #721c1c;
 }
 
-.is-success.active {
+.is-success.active, .is-failed.active {
     display: block;
 }
