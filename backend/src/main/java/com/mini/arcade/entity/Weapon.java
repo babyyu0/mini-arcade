@@ -1,8 +1,9 @@
 package com.mini.arcade.entity;
 
-import com.mini.arcade.dto.WeaponDto;
+import com.mini.arcade.dto.WeaponResponseDto;
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @Setter(AccessLevel.PRIVATE)
 public class Weapon {
-    private String name;
-    private String description;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int level;
+    private int id;
+    private String name;
+    private String description;
+    private long energy;
     private int strengtheningCost;
     private int price;
     private double successPer;
@@ -32,7 +34,7 @@ public class Weapon {
         this.successPer = successPer;
     }
 
-    public WeaponDto toDto() {
-        return new WeaponDto(name, description, level, strengtheningCost, price, successPer);
+    public WeaponResponseDto toResponseDto() {
+        return new WeaponResponseDto(id, name, description, energy, strengtheningCost, price, successPer);
     }
 }

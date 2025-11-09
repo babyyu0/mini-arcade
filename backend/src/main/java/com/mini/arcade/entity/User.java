@@ -1,6 +1,6 @@
 package com.mini.arcade.entity;
 
-import com.mini.arcade.dto.UserDto;
+import com.mini.arcade.dto.UserResponseDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class User {
     @JoinColumn(name="weapon_id")
     private Weapon weapon;
 
-    public UserDto toDto(){
-        return new UserDto(ip, money);
+    public UserResponseDto toResponseDto() {
+        return new UserResponseDto(ip, money);
     }
 }

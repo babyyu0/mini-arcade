@@ -1,10 +1,10 @@
 package com.mini.arcade.service;
 
-import com.mini.arcade.dto.GameInfoDto;
-import com.mini.arcade.dto.UserDto;
+import com.mini.arcade.dto.StrengtheningGameResponseDto;
+import com.mini.arcade.dto.UserRequestDto;
 
 public interface StrengtheningService {
-    GameInfoDto init(UserDto userDto);
-    GameInfoDto strengthen(UserDto userDto);
-    GameInfoDto sell(UserDto userDto);
+    StrengtheningGameResponseDto init(UserRequestDto userDto);
+    StrengtheningGameResponseDto strengthen(UserRequestDto userDto);
+    StrengtheningGameResponseDto sell(UserRequestDto userDto);
 }

@@ -1,13 +1,12 @@
 package com.mini.arcade.service;
 
-import com.mini.arcade.dto.GameInfoDto;
-import com.mini.arcade.dto.UserDto;
-import com.mini.arcade.dto.WeaponDto;
+import com.mini.arcade.dto.StrengtheningGameResponseDto;
+import com.mini.arcade.dto.UserRequestDto;
 import com.mini.arcade.entity.User;
 import com.mini.arcade.entity.Weapon;
+import com.mini.arcade.enums.SuccessStatus;
 import com.mini.arcade.repository.UserRepository;
 import com.mini.arcade.repository.WeaponRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class StrengtheningServiceImpl implements StrengtheningService {
 
     @Override
     @Transactional(readOnly = true)
-    public GameInfoDto init(UserDto userDto) {
+    public StrengtheningGameResponseDto init(UserRequestDto userDto) {
         // 강화 단계를 처음으로 설정
         Weapon weapon = weaponRepository.findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("무기를 찾을 수 없습니다!"));
@@ -33,12 +32,12 @@ public class StrengtheningServiceImpl implements StrengtheningService {
         User user = new User(userDto.ip(), 100000, weapon);
         userRepository.saveAndFlush(user);
 
-        return new GameInfoDto(user.toDto(), weapon.toDto());
+        return new StrengtheningGameResponseDto(user.toResponseDto(), weapon.toResponseDto(), SuccessStatus.NONE.value());
     }
 
     @Override
     @Transactional
-    public GameInfoDto strengthen(UserDto userDto) {
+    public StrengtheningGameResponseDto strengthen(UserRequestDto userDto) {
         User user = userRepository.findById(userDto.ip())
                 .orElseThrow(() -> new IllegalArgumentException("무기를 찾을 수 없습니다!"));
         Weapon weapon = user.getWeapon();
@@ -52,22 +51,23 @@ public class StrengtheningServiceImpl implements StrengtheningService {
         log.info("Selected random number is {}", randomNumber);
 
         Optional<Weapon> nextWeapon;
-        log.info("before weapon level is {}", weapon.getLevel());
+        SuccessStatus successStatus =  SuccessStatus.NONE;
         if(randomNumber <= weapon.getSuccessPer()) {
-            nextWeapon = weaponRepository.findById(weapon.getLevel() + 1L);
+            nextWeapon = weaponRepository.findById(weapon.getId() + 1L);
+            successStatus = SuccessStatus.SUCCEED;
         } else {
             nextWeapon = weaponRepository.findById(1L);
+            successStatus = SuccessStatus.FAIL;
         }
-        log.info("after weapon level is {}", nextWeapon.get().getLevel());
 
         user.setWeapon(nextWeapon.orElseThrow());
         userRepository.saveAndFlush(user);
 
-        return new GameInfoDto(user.toDto(), nextWeapon.get().toDto());
+        return new StrengtheningGameResponseDto(user.toResponseDto(), nextWeapon.get().toResponseDto(), successStatus.value());
     }
 
     @Override
-    public GameInfoDto sell(UserDto userDto) {
+    public StrengtheningGameResponseDto sell(UserRequestDto userDto) {
         User user = userRepository.findById(userDto.ip())
                 .orElseThrow(() -> new IllegalArgumentException("무기를 찾을 수 없습니다!"));
         Weapon weapon = user.getWeapon();
@@ -80,6 +80,6 @@ public class StrengtheningServiceImpl implements StrengtheningService {
         user.setWeapon(nextWeapon);
         userRepository.saveAndFlush(user);
 
-        return new GameInfoDto(user.toDto(), nextWeapon.toDto());
+        return new StrengtheningGameResponseDto(user.toResponseDto(), nextWeapon.toResponseDto(), SuccessStatus.NONE.value());
     }
 }

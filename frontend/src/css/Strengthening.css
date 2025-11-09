@@ -20,8 +20,14 @@
     max-width: 1080px;
 }
 
+@media(max-width: 800px) {
+    .weapon-contents {
+        flex-direction: column;
+    }
+}
+
 .weapon-info, .user-select {
-    flex-basis: 40%;
+    flex-basis: 50%;
     text-align: center;
 }
 
@@ -40,7 +46,7 @@
     display: flex;
     justify-content: center;
     font-family: 'RoundedFixedsys';
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 1rem 0;
 }
 
@@ -92,6 +98,6 @@
     color: #721c1c;
 }
 
-.is-success.success, .is-failed.failed {
+.is-success.active {
     display: block;
 }

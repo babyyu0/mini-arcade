@@ -1,6 +1,6 @@
 package com.mini.arcade.controller;
 
-import com.mini.arcade.dto.UserDto;
+import com.mini.arcade.dto.UserRequestDto;
 import com.mini.arcade.service.StrengtheningService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +18,19 @@ public class StrengtheningController {
 
     // 게임이 처음 시작될 때 정보 세팅
     @PostMapping("init")
-    public ResponseEntity<?> init(@RequestBody UserDto userDto){
+    public ResponseEntity<?> init(@RequestBody UserRequestDto userDto){
         return ResponseEntity.ok(strengtheningService.init(userDto));
     }
 
     // 무기 강화하기
     @PostMapping("strengthen")
-    public ResponseEntity<?> strengthen(@RequestBody UserDto userDto){
+    public ResponseEntity<?> strengthen(@RequestBody UserRequestDto userDto){
         return ResponseEntity.ok(strengtheningService.strengthen(userDto));
     }
 
     // 무기 강화하기
     @PostMapping("sell")
-    public ResponseEntity<?> sell(@RequestBody UserDto userDto){
+    public ResponseEntity<?> sell(@RequestBody UserRequestDto userDto){
         return ResponseEntity.ok(strengtheningService.sell(userDto));
     }
 }
