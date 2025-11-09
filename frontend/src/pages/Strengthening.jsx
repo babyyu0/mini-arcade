@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import Title from '../components/Title'
-import '../css/Strengthening.css'
 import axios from 'axios';
 import Category from '../components/Category';
+import Title from '../components/Title'
+import { useState, useEffect } from 'react'
+import '../css/Strengthening.css'
 
 function Strengthening() {
 
@@ -105,7 +105,7 @@ function Strengthening() {
                         <button onClick={handleStrengthenWeapon}>강화하기</button>
                         <button onClick={handleSellWeapon}>판매하기</button>
                         <div className={`is-success ${successStatus == 1 ? 'active':''}`}>강화 성공!</div>
-                        <div className={`is-fail ${successStatus == 2 ? 'active':''}`}>강화 실패!</div>
+                        <div className={`is-failed ${successStatus == 2 ? 'active':''}`}>강화 실패!</div>
                     </div>
                 </div>
             </div>

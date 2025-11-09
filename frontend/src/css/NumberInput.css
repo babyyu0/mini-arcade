@@ -1,0 +1,15 @@
+.number-input {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    background-color: rgba(202, 202, 202, 0.2);
+    border-radius: 10px;
+
+    width: 8rem;
+    height: 10rem;
+
+    font-size: 6rem;
+    box-shadow: 0px 2px 0 #bdbdbd, 2px 4px 6px #bdbdbd;
+}

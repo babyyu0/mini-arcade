@@ -92,10 +92,12 @@
 
 .is-success {
     color: #56a871;
+    display: none;
 }
 
 .is-failed {
     color: #721c1c;
+    display: none;
 }
 
 .is-success.active, .is-failed.active {
