@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Slf4j
 public class NumberBaseballService {
 
     private String m_randomNumber = "";
@@ -16,8 +15,6 @@ public class NumberBaseballService {
         for(int i = 0; i < numCount; i++) {
             m_randomNumber += (int)Math.ceil(Math.random() * 10);
         }
-
-        log.info("m_randomNumber: {}", m_randomNumber);
     }
 
     public int[] submitCorrection(String submitNum) {
