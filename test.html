@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자야구 GAME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --text-color: #212529;
+            --primary-color: #4D96FF;
+            --strike-color: #00C851;
+            --ball-color: #FFBB33;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 모바일 최적화 너비 */
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        header p {
+            color: #868e96;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .game-section {
+            margin-bottom: 30px;
+        }
+
+        /* 입력 필드 디자인 */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input-box {
+            flex: 1;
+            height: 70px;
+            font-size: 2rem;
+            text-align: center;
+            border: 3px solid #DEE2E6;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: all 0.3s;
+            /* 실제로는 JS로 제어하거나 type="number" 하나를 크게 사용 */
+        }
+
+        .input-box:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* 던지기 버튼 */
+        .throw-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .throw-btn:hover {
+            background-color: #3378FF;
+        }
+
+        /* 기록 영역 */
+        .history-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #868e96;
+        }
+
+        .history-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* 결과 카드 디자인 */
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #F1F3F5;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .guessed-number {
+            font-size: 1.4rem;
+            letter-spacing: 5px;
+        }
+
+        .result-badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .badge.strike { background-color: var(--strike-color); }
+        .badge.ball { background-color: var(--ball-color); }
+        .badge.out { background-color: #DEE2E6; color: #868e96; }
+
+        .restart-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>⚾ 숫자야구</h1>
+        <p>컴퓨터의 3자리 숫자를 맞춰보세요!</p>
+    </header>
+
+    <main>
+        <section class="game-section">
+            <div class="input-group">
+                <input type="number" class="input-box" min="0" max="9" placeholder="?">
+                <input type="number" class="input-box" min="0" max="9" placeholder="?">
+                <input type="number" class="input-box" min="0" max="9" placeholder="?">
+            </div>
+            <button class="throw-btn">공 던지기! (Throw)</button>
+        </section>
+
+        <section class="history-section">
+            <h2>기록 (History)</h2>
+            <ul class="history-list">
+                <li class="history-item">
+                    <span class="guessed-number">1 4 7</span>
+                    <div class="result-badges">
+                        <span class="badge strike">1 S</span>
+                        <span class="badge ball">1 B</span>
+                    </div>
+                </li>
+                <li class="history-item">
+                    <span class="guessed-number">8 2 0</span>
+                    <div class="result-badges">
+                        <span class="badge ball">2 B</span>
+                    </div>
+                </li>
+                 <li class="history-item">
+                    <span class="guessed-number">5 9 6</span>
+                    <div class="result-badges">
+                        <span class="badge out">OUT</span>
+                    </div>
+                </li>
+                 <li class="history-item" style="background-color: #E3FCEC;">
+                    <span class="guessed-number">3 1 4</span>
+                    <div class="result-badges">
+                        <span class="badge strike" style="flex:1; text-align:center;">🎉 3 STRIKE! 🎉</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <button class="restart-btn">새 게임 시작</button>
+    </main>
+</div>
+
+<script>
+    // 이 영역에 실제 게임 로직 (랜덤 숫자 생성, 입력값 비교, 결과 출력 등)이 들어갑니다.
+    console.log("디자인 데모입니다. 실제 게임 로직 구현이 필요합니다.");
+</script>
+
+</body>
+</html>
